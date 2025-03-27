@@ -12,7 +12,7 @@ In the [Star Trek](https://en.wikipedia.org/wiki/Star_Trek) universe it is the o
 
 ## How does this package work?
 
-This package defines a small number of severity levels, which correspond with distinct counter metrics (implementation not provided, but you could used [github.com/smarty/metrics/v2](https://pkg.go.dev/github.com/smartystreets/metrics/v2)).
+This package defines a small number of severity levels, which correspond with distinct counter metrics (implementation not provided, but you could use [github.com/smarty/metrics/v2](https://pkg.go.dev/github.com/smartystreets/metrics/v2)).
 
 This package also defines a few alert escalation strategies to calculate a severity based on a series of events (timestamps).
 
