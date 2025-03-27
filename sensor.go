@@ -17,8 +17,13 @@ func (this *sensor) Reset() {
 	}
 }
 func (this *sensor) Record(event time.Time) (result Severity) {
+	if len(this.history) == maxHistoryCount {
+		this.history = this.history[1:]
+	}
 	this.history = append(this.history, event)
 	result = this.strategy.CalculateSeverity(this.history)
 	this.monitor.Monitor(result)
 	return result
 }
+
+const maxHistoryCount = 1024

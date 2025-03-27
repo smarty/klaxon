@@ -26,13 +26,16 @@ func (this *FakeCounter) Increment() { this.value++ }
 
 //////////////////////////////////////////////////////
 
-type FakeEscalationStrategy struct{}
+type FakeEscalationStrategy struct {
+	events []time.Time
+}
 
 func NewFakeEscalationStrategy() *FakeEscalationStrategy {
 	return &FakeEscalationStrategy{}
 }
 
 func (this *FakeEscalationStrategy) CalculateSeverity(events []time.Time) Severity {
+	this.events = events
 	return min(Disaster, Severity(len(events)))
 }
 

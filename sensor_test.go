@@ -36,3 +36,14 @@ func TestSensor(t *testing.T) {
 	shouldEqual(t, severity, Anomaly)
 	shouldEqual(t, monitor.monitored, []Severity{Anomaly, Failure, Disaster, Disaster, Anomaly})
 }
+
+func TestSensorEventsCapped(t *testing.T) {
+	strategy := NewFakeEscalationStrategy()
+	instrument := NewSensor(strategy, NewFakeMonitor())
+	for range maxHistoryCount {
+		_ = instrument.Record(time.Now())
+	}
+	shouldEqual(t, len(strategy.events), maxHistoryCount)
+	_ = instrument.Record(time.Now())
+	shouldEqual(t, len(strategy.events), maxHistoryCount)
+}
