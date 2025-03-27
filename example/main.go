@@ -28,6 +28,10 @@ func main() {
 		log.Println(now.Format(time.DateTime), "-- Severity:", sensor.Record(now))
 		now = now.Add(time.Minute * 5)
 	}
+
+	log.Println("Anomalies:", anomalies.Value)
+	log.Println("Failures:", failures.Value)
+	log.Println("Disasters:", disasters.Value)
 }
 
 type Counter struct{ Value int }
