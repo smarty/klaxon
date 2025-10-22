@@ -11,6 +11,21 @@ const (
 	Disaster Severity = 3
 )
 
+func (s Severity) String() string {
+	switch s {
+	case Benign:
+		return "Benign"
+	case Anomaly:
+		return "Anomaly"
+	case Failure:
+		return "Failure"
+	case Disaster:
+		return "Disaster"
+	default:
+		return "Unknown"
+	}
+}
+
 type Monitor interface {
 	Monitor(Severity)
 }
